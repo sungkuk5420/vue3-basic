@@ -1,8 +1,8 @@
 <template>
 	<div>
-		<h2>{{ form.title }}</h2>
-		<p>{{ form.content }}</p>
-		<p class="text-muted">{{ form.createAt }}</p>
+		<h2>{{ post.title }}</h2>
+		<p>{{ post.content }}</p>
+		<p class="text-muted">{{ post.createAt }}</p>
 		<hr class="my-4" />
 		<div class="row g-2">
 			<div class="col-auto">
@@ -21,7 +21,7 @@
 				</button>
 			</div>
 			<div class="col-auto">
-				<button class="btn btn-outline-danger">삭제</button>
+				<button class="btn btn-outline-danger" @click="remove">삭제</button>
 			</div>
 		</div>
 	</div>
@@ -29,7 +29,7 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
-import { getPostById } from '@/api/post';
+import { getPostById, deletePost } from '@/api/post';
 import { ref } from 'vue';
 
 const props = defineProps({
@@ -37,11 +37,29 @@ const props = defineProps({
 });
 
 const router = useRouter();
-const form = ref({});
+const post = ref({});
 
-const fetchPost = () => {
-	const data = getPostById(props.id);
-	form.value = { ...data };
+const fetchPost = async () => {
+	try {
+		const { data } = await getPostById(props.id);
+		// post.value = { ...data };
+		setPost(data);
+	} catch (error) {
+		console.error(error);
+	}
+};
+const setPost = data => {
+	post.value = { ...data };
+};
+const remove = async () => {
+	try {
+		if (confirm('삭제하시겠습니까?')) {
+			await deletePost(props.id);
+			router.push({ name: 'PostList' });
+		}
+	} catch (error) {
+		console.error(error);
+	}
 };
 fetchPost();
 const goListPage = () => router.push({ name: 'PostList' });

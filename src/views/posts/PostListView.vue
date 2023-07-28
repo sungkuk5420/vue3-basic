@@ -30,8 +30,14 @@ const router = useRouter();
 
 const posts = ref([]);
 
-const featchPosts = () => {
-	posts.value = getPosts();
+const featchPosts = async () => {
+	try {
+		let { data } = await getPosts();
+		console.log(data);
+		posts.value = data;
+	} catch (error) {
+		console.error(error);
+	}
 };
 featchPosts();
 
