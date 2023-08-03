@@ -24,6 +24,7 @@
 			:type="alertType"
 		/> -->
 		<AppAlert :items="alerts" />
+		<AppModal></AppModal>
 	</div>
 </template>
 
@@ -33,6 +34,7 @@ import { getPostById, updatePost } from '@/api/post';
 import { ref } from 'vue';
 import PostForm from '../../components/posts/PostForm.vue';
 import AppAlert from '../../components/AppAlert.vue';
+import AppModal from '../../components/AppModal.vue';
 
 const route = useRoute();
 const router = useRouter();

@@ -32,7 +32,7 @@ const save = async () => {
 	try {
 		const data = {
 			...form.value,
-			createAt: Date.now(),
+			createdAt: Date.now(),
 		};
 		await createPost(data);
 		router.push({ name: 'PostList' });
