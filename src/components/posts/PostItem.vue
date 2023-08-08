@@ -4,7 +4,7 @@
 		<p class="card-text">
 			{{ content }}
 		</p>
-		<a href="#" class="btn btn-primary">{{ createdAt }}</a>
+		<a href="#" class="btn btn-primary">{{ createDate }}</a>
 		<template #footer>
 			<div class="d-flex justify-content-end">
 				<button class="btn p-0" @click.stop="$emit('modal')">
@@ -30,7 +30,8 @@
 </template>
 
 <script setup>
-defineProps({
+import { inject, computed } from 'vue';
+const props = defineProps({
 	title: {
 		type: String,
 		required: true,
@@ -45,6 +46,11 @@ defineProps({
 });
 
 defineEmits(['modal']);
+const dayjs = inject('dayjs');
+
+const createDate = computed(() => {
+	return dayjs(props.createdAt).format('YYYY. MM. DD HH:mm:ss');
+});
 </script>
 
 <style lang="scss" scoped></style>

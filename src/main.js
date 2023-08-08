@@ -6,10 +6,12 @@ import funcPlugins from './plugins/func';
 import objPlugins from './plugins/obj';
 import person from './plugins/person';
 import globalComponents from './plugins/global-components';
+import dayjs from './plugins/dayjs';
 import focus from './directives/focus';
 
 const app = createApp(App);
 app.directive('focus', focus);
+app.use(dayjs);
 app.use(globalComponents);
 // .use(funcPlugins)
 // .use(person, { name: '홍길동' })
