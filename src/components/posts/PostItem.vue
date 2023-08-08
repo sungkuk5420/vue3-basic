@@ -30,8 +30,6 @@
 </template>
 
 <script setup>
-import AppCard from '../AppCard.vue';
-
 defineProps({
 	title: {
 		type: String,

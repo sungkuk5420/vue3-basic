@@ -5,11 +5,13 @@ import router from '@/router';
 import funcPlugins from './plugins/func';
 import objPlugins from './plugins/obj';
 import person from './plugins/person';
+import globalComponents from './plugins/global-components';
 
 createApp(App)
-	.use(funcPlugins)
-	.use(person, { name: '홍길동' })
-	.use(objPlugins, { name: '짐코딩' })
+	.use(globalComponents)
+	// .use(funcPlugins)
+	// .use(person, { name: '홍길동' })
+	// .use(objPlugins, { name: '짐코딩' })
 	.use(router)
 	.mount('#app');
 import 'bootstrap/dist/js/bootstrap.js';
