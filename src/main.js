@@ -6,14 +6,16 @@ import funcPlugins from './plugins/func';
 import objPlugins from './plugins/obj';
 import person from './plugins/person';
 import globalComponents from './plugins/global-components';
+import focus from './directives/focus';
 
-createApp(App)
-	.use(globalComponents)
-	// .use(funcPlugins)
-	// .use(person, { name: '홍길동' })
-	// .use(objPlugins, { name: '짐코딩' })
-	.use(router)
-	.mount('#app');
+const app = createApp(App);
+app.directive('focus', focus);
+app.use(globalComponents);
+// .use(funcPlugins)
+// .use(person, { name: '홍길동' })
+// .use(objPlugins, { name: '짐코딩' })
+app.use(router);
+app.mount('#app');
 import 'bootstrap/dist/js/bootstrap.js';
 
 // console.log('MODE:', import.meta.env.MODE);
