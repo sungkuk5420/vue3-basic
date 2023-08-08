@@ -23,7 +23,6 @@
 			:alert-message="alertMessage"
 			:type="alertType"
 		/> -->
-		<AppAlert :items="alerts" />
 	</div>
 </template>
 
@@ -32,6 +31,9 @@ import { useRoute, useRouter } from 'vue-router';
 import { getPostById, updatePost } from '@/api/post';
 import { ref } from 'vue';
 import PostForm from '../../components/posts/PostForm.vue';
+import { useAlert } from '@/composables/alert';
+
+const { vAlert } = useAlert();
 
 const route = useRoute();
 const router = useRouter();
@@ -61,14 +63,6 @@ const edit = async () => {
 		console.error(error);
 		vAlert('네트워크 오류!!');
 	}
-};
-
-const alerts = ref([]);
-const vAlert = (message, type = 'error') => {
-	alerts.value.push({ message, type });
-	setTimeout(() => {
-		alerts.value.shift();
-	}, 2000);
 };
 </script>
 

@@ -14,6 +14,7 @@
 				<button class="btn btn-primary">저장</button>
 			</template>
 		</PostForm>
+		<AppAlert :items="alerts" />
 	</div>
 </template>
 
@@ -22,6 +23,9 @@ import { useRouter } from 'vue-router';
 import { createPost } from '@/api/post';
 import { ref } from 'vue';
 import PostForm from '../../components/posts/PostForm.vue';
+import { useAlert } from '@/composables/alert.js';
+
+const { alerts, vAlert } = useAlert();
 const router = useRouter();
 const goListPage = () => router.push({ name: 'PostList' });
 const form = ref({
@@ -35,7 +39,9 @@ const save = async () => {
 			createdAt: Date.now(),
 		};
 		await createPost(data);
-		router.push({ name: 'PostList' });
+
+		vAlert('등록이 완료되었습니다.', 'success');
+		// router.push({ name: 'PostList' });
 	} catch (error) {
 		console.error(error);
 	}
