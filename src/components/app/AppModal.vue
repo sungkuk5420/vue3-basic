@@ -1,10 +1,9 @@
 <template>
 	<Transition>
 		<div v-if="modelValue">
-			<div class="modal-backdrop fade show" @click="$emit('closeModal')"></div>
+			<div class="modal-backdrop fade show"></div>
 			<div
 				class="modal fade show d-block"
-				id="exampleModal"
 				tabindex="-1"
 				aria-labelledby="exampleModalLabel"
 				aria-hidden="true"
@@ -17,7 +16,6 @@
 								<button
 									type="button"
 									class="btn-close"
-									data-bs-dismiss="modal"
 									aria-label="Close"
 									@click="$emit('update:modelValue', false)"
 								></button>
@@ -27,7 +25,7 @@
 							<slot></slot>
 						</div>
 						<div class="modal-footer">
-							<slot name="actions"> </slot>
+							<slot name="actions"></slot>
 						</div>
 					</div>
 				</div>
@@ -41,8 +39,7 @@ defineProps({
 	modelValue: Boolean,
 	title: String,
 });
-
-defineEmits(['closeModal', 'update:modelValue']);
+defineEmits(['close', 'update:modelValue']);
 </script>
 
 <style scoped>
@@ -50,7 +47,6 @@ defineEmits(['closeModal', 'update:modelValue']);
 .v-leave-to {
 	opacity: 0;
 }
-
 .v-enter-active,
 .v-leave-active {
 	transition: all 0.5s ease;

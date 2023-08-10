@@ -7,8 +7,9 @@ import PostListView from '@/views/posts/PostListView.vue';
 import PostEditView from '@/views/posts/PostEditView.vue';
 import NotFoundView from '@/views/NotFoundView.vue';
 import NestedView from '@/views/nested/NestedView.vue';
-import NestedOneView from '@/views/nested/NestedOne.vue';
-import NestedTwoView from '@/views/nested/NestedTwo.vue';
+import NestedOneView from '@/views/nested/NestedOneView.vue';
+import NestedTwoView from '@/views/nested/NestedTwoView.vue';
+import NestedHomeView from '@/views/nested/NestedHomeView.vue';
 
 const routes = [
 	{
@@ -36,11 +37,7 @@ const routes = [
 		name: 'PostDetail',
 		component: PostDetailView,
 		props: true,
-		// props: route => {
-		// 	return {
-		// 		id: parseInt(route.params.id),
-		// 	};
-		// },
+		// props: route => ({ id: parseInt(route.params.id) }),
 	},
 	{
 		path: '/posts/:id/edit',
@@ -48,10 +45,20 @@ const routes = [
 		component: PostEditView,
 	},
 	{
+		path: '/:pathMatch(.*)*',
+		name: 'NotFound',
+		component: NotFoundView,
+	},
+	{
 		path: '/nested',
 		name: 'Nested',
 		component: NestedView,
 		children: [
+			{
+				path: '',
+				name: 'NestedHome',
+				component: NestedHomeView,
+			},
 			{
 				path: 'one',
 				name: 'NestedOne',
@@ -64,11 +71,10 @@ const routes = [
 			},
 		],
 	},
-	{ path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFoundView },
 ];
-
 const router = createRouter({
-	history: createWebHistory('/'),
+	history: createWebHistory(),
+	// history: createWebHashHistory(),
 	routes,
 });
 

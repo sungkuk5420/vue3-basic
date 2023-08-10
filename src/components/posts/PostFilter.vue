@@ -4,16 +4,17 @@
 			<div class="col">
 				<input
 					:value="title"
+					@input="$emit('update:title', $event.target.value)"
 					type="text"
 					class="form-control"
-					@input="$emit('update:title', $event.target.value)"
+					placeholder="제목으로 검색해주세요."
 				/>
 			</div>
 			<div class="col-3">
 				<select
-					class="form-select"
 					:value="limit"
 					@input="$emit('update:limit', $event.target.value)"
+					class="form-select"
 				>
 					<option value="3">3개씩 보기</option>
 					<option value="6">6개씩 보기</option>
@@ -29,7 +30,6 @@ defineProps({
 	title: String,
 	limit: Number,
 });
-
 defineEmits(['update:title', 'update:limit']);
 </script>
 

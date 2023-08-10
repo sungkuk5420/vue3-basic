@@ -1,6 +1,6 @@
 <template>
-	<div class="row g-3 mb-5">
-		<div :class="colClsas" v-for="(item, index) in items" :key="index">
+	<div class="row g-3">
+		<div v-for="(item, index) in items" :key="index" :class="colClass">
 			<slot :item="item" :index="index"></slot>
 		</div>
 	</div>
@@ -12,7 +12,7 @@ defineProps({
 		type: Array,
 		required: true,
 	},
-	colClsas: {
+	colClass: {
 		type: String,
 		default: 'col-4',
 	},

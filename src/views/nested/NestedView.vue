@@ -2,24 +2,27 @@
 	<div>
 		<ul class="nav nav-pills">
 			<li class="nav-item">
-				<RouterLink class="nav-link" to="/nested/one" active-class="active"
-					>nested 1</RouterLink
+				<RouterLink
+					class="nav-link"
+					active-class="active"
+					:to="{ name: 'NestedOne', replace: true }"
 				>
+					Nested One
+				</RouterLink>
 			</li>
 			<li class="nav-item">
-				<RouterLink class="nav-link" to="/nested/two" active-class="active"
-					>nested 2</RouterLink
+				<RouterLink
+					class="nav-link"
+					active-class="active"
+					:to="{ name: 'NestedTwo', replace: true }"
 				>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"
-					>Disabled</a
-				>
+					Nested Two
+				</RouterLink>
 			</li>
 		</ul>
+		<hr class="my-4" />
+		<RouterView></RouterView>
 	</div>
-	<hr class="my-4" />
-	<RouterView></RouterView>
 </template>
 
 <script setup></script>
